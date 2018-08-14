@@ -1,0 +1,32 @@
+$yellow:#fbc02d;
+
+mat-card {
+    width:fit-content;
+    text-align: center;
+    position: absolute;
+    margin: 10% auto;
+    left: 0;
+    right: 0;
+    mat-card-actions {
+        display: flex;
+        flex-direction: column;
+        button {
+            margin-bottom: 40px;
+            color: $yellow;
+            img {
+                width: 1.5em;
+            }
+        }
+        button:last-child {
+            color:#000;
+        }
+    }
+}
+p {
+    font-family: 'Righteous';
+    font-size:40px;
+    span {
+        font-family: 'Satisfy';
+        color: $yellow;
+    }
+}

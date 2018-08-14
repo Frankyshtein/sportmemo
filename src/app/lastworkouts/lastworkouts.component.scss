@@ -1,0 +1,12 @@
+mat-card {
+    margin: 20px;
+    width: fit-content;
+    display: inline-block;
+}
+@media (max-width: 599px) {
+    mat-card {
+        width: auto;
+        display: block;
+        margin: 20px 0;
+    }
+}

@@ -1,0 +1,44 @@
+$yellow:#f3b01e;
+mat-card {
+    width: fit-content;
+    margin: 5% auto 0 auto;
+    text-align: center;
+    mat-card-title p {
+        font-family: 'Righteous';
+        font-size: 40px;
+        margin: 10px 0;
+    }
+    mat-card-content {
+        form {
+            button {
+                mat-icon {
+                    width: 40px;
+                    height: 40px;
+                    font-size: 40px;
+                    line-height: 40px;
+                }
+            }
+        }
+    }
+    mat-card-actions {
+        display: flex;
+        flex-direction: column;
+        button {
+            margin-bottom: 40px;
+        }
+        button:last-child {
+            color: $yellow;
+        }
+    }
+}
+
+p {
+    font-family: Roboto, sans-serif;
+    font-size: 20px;
+}
+
+.mat-card-subtitle,
+.mat-card-content,
+.mat-card-header .mat-card-title {
+    font-size: 20px;
+}

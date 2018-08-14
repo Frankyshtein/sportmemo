@@ -1,1 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face{
+    font-family: 'Righteous';
+    src: url(assets/fonts/Righteous-Regular.ttf);
+}
+@font-face{
+    font-family: 'Satisfy';
+    src: url(assets/fonts/Satisfy-Regular.ttf);
+}
+@font-face{
+    font-family: 'Roboto';
+    src: url(assets/fonts/Roboto-Regular.ttf);
+}
+body {
+    height: 100vh;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Roboto,sans-serif;
+}

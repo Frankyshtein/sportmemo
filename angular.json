@@ -45,7 +45,10 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [
+                        "styles": [
+                {
+                    "input": "src/theme.scss"
+                  },
               "src/styles.scss"
             ],
             "scripts": []

@@ -1,0 +1,10 @@
+<mat-card *ngFor="let workout of (workOuts | async)">
+    <mat-card-title>
+        <p>{{ workout.date | date:'d/MM/y, HH:mm' }}</p>
+    </mat-card-title>
+    <mat-card-content>
+        <mat-list *ngFor="let exercise of workout.exerciseList">
+            <mat-list-item>{{ exercise.name + ': ' + exercise.reps}}</mat-list-item>
+        </mat-list>
+    </mat-card-content>
+</mat-card>

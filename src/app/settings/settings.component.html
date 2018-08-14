@@ -1,0 +1,30 @@
+<mat-card>
+    <mat-card-title>
+        <p>Settings</p>
+    </mat-card-title>
+    <mat-card-content>
+        <h1>Exercise List</h1>
+        <div *ngFor="let exercise of settings.exerciseList">
+            <span>{{ exercise }}</span><mat-icon class="color" (click)="removeExercise($event)" >remove</mat-icon>
+        </div>
+        <form>
+            <mat-form-field>
+                <input #newExercise matInput placeholder="new exercise" [(ngModel)]="exercise" [ngModelOptions]="{standalone: true}" required>
+                <mat-icon matSuffix>mode_edit</mat-icon>
+            </mat-form-field>
+            <button mat-icon-button (click)="addExercise()" ><mat-icon class="color" >add</mat-icon></button>
+        </form>
+        <h1>Timeout</h1>
+        <span>{{ settings.timeout }}</span><span> s</span>
+        <form>
+            <mat-form-field>
+                <input #newTimeout type="tel" matInput placeholder="new timeout" [(ngModel)]="timeOut" [ngModelOptions]="{standalone: true}" pattern="^[ 0-9]+$" required>
+                <mat-icon matSuffix>mode_edit</mat-icon>
+            </mat-form-field>
+            <button mat-icon-button (click)="changeTimeout()"><mat-icon class="color">add</mat-icon></button>
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="save()">Save settings</button>
+    </mat-card-actions>
+</mat-card>

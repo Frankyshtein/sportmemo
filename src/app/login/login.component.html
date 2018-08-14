@@ -1,0 +1,13 @@
+<mat-card>
+    <mat-card-title>
+        <p>Sport<span>Memo</span></p>
+    </mat-card-title>
+    <mat-card-content>
+        <h2 *ngIf="loggedIn">Welcom!</h2>
+        <h3 *ngIf="loggedIn">{{ (this.smAuth.user | async)?.displayName }}</h3>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button (click)="logIn()" *ngIf="!loggedIn">Log in with <img src="../../assets/img/google.png"></button>
+        <button mat-raised-button (click)="goNext()" *ngIf="loggedIn">Start workout!</button>
+    </mat-card-actions>
+</mat-card>
