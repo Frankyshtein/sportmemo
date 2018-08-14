@@ -16,9 +16,9 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(private smAuth: AngularFireAuth, private router: Router, private db: AngularFireDatabase) {}
 
   ngOnInit() {
-      this.smAuth.user.subscribe(val => {
+      this.sub = this.smAuth.user.subscribe(val => {
           if (val && !val.isAnonymous) {
-              this.loggedIn = true;
+              this.router.navigate([this.loginPath]);
           }
       });
   }
