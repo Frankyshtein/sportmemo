@@ -1,3 +1,4 @@
+import { AuthguardService } from './services/auth-guard.service';
 import { environment } from './../environments/environment';
 import { TimerComponent } from './timer/timer.component';
 import { MaterialModule } from './shared/material.module';
@@ -42,7 +43,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
     AngularFireDatabaseModule
   ],
   entryComponents: [TimerComponent],
-  providers: [AngularFireAuth],
+  providers: [AngularFireAuth, AuthguardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,3 +1,4 @@
+import { AuthguardService } from './services/auth-guard.service';
 import { SettingsComponent } from './settings/settings.component';
 import { LastworkoutsComponent } from './lastworkouts/lastworkouts.component';
 import { LoginComponent } from './login/login.component';
@@ -8,11 +9,9 @@ import { WorkoutComponent } from './workout/workout.component';
 
 const appRoutes: Routes = [
     {path: '', component: LoginComponent},
-    {path: 'main', component: MainComponent, children: [
-        {path: 'startworkout', component: WorkoutComponent},
-        {path: 'lastworkouts', component: LastworkoutsComponent},
-        {path: 'settings', component: SettingsComponent}
-    ]}
+    {path: 'startworkout', canActivate: [AuthguardService], component: WorkoutComponent},
+    {path: 'lastworkouts', canActivate: [AuthguardService], component: LastworkoutsComponent},
+    {path: 'settings', canActivate: [AuthguardService], component: SettingsComponent}
 ];
 
 @NgModule({
