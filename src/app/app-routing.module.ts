@@ -4,7 +4,6 @@ import { LastworkoutsComponent } from './lastworkouts/lastworkouts.component';
 import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MainComponent } from './main/main.component';
 import { WorkoutComponent } from './workout/workout.component';
 
 const appRoutes: Routes = [

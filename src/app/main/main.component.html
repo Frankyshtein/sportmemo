@@ -4,9 +4,9 @@
             <p class="logo">Sport<span>Memo</span></p>
         </mat-toolbar>
         <mat-nav-list>
-            <a mat-list-item routerLink='startworkout'><mat-icon>fitness_center</mat-icon>Start workout</a>
-            <a mat-list-item routerLink='lastworkouts'><mat-icon>list</mat-icon>Last workouts</a>
-            <a mat-list-item routerLink='settings'><mat-icon>settings</mat-icon>Settings</a>
+            <a mat-list-item routerLink='startworkout' routerLinkActive="active"><mat-icon>fitness_center</mat-icon>Start workout</a>
+            <a mat-list-item routerLink='lastworkouts' routerLinkActive="active"><mat-icon>list</mat-icon>Last workouts</a>
+            <a mat-list-item routerLink='settings' routerLinkActive="active"><mat-icon>settings</mat-icon>Settings</a>
             <a mat-list-item (click)="logOut()"><mat-icon>meeting_room</mat-icon>Log out</a>
         </mat-nav-list>
         <p><mat-icon>account_circle</mat-icon>{{ ( this.smAuth.user | async)?.displayName }}</p>

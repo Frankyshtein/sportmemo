@@ -46,7 +46,7 @@ export class WorkoutComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.audio.src = 'assets/sounds/budilnik-elektronnye-naruchnye-chasy-signal.mp3';
+        this.audio.src = 'assets/sounds/signal.mp3';
         this.audio.load();
     }
     ngOnDestroy() {
