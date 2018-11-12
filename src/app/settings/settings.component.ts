@@ -17,7 +17,6 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit() {
     this.settings = this.fireData.getSettings() || {exerciseList: [ ], timeout: 60};
-    console.log(this.settings);
   }
   removeExercise ($event) {
       const elem = this.settings.exerciseList.indexOf($event.target.previousSibling.innerText);
