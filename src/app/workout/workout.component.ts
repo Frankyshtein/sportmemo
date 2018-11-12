@@ -1,29 +1,18 @@
-import { AngularFireAuth } from 'angularfire2/auth';
 import { TimerComponent } from './../timer/timer.component';
-import {
-    MatDialog
-} from '@angular/material';
-import {
-    Component,
-    OnInit,
-    ViewChild
-} from '@angular/core';
-import { ElementRef, OnDestroy } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ElementRef } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { DataService } from '../services/data.service';
 @Component({
     selector: 'sm-workout',
     templateUrl: './workout.component.html',
     styleUrls: ['./workout.component.scss']
 })
-export class WorkoutComponent implements OnInit, OnDestroy {
+export class WorkoutComponent implements OnInit {
     @ViewChild('repit') el: ElementRef;
     @ViewChild('repit') el2: ElementRef;
-    sub;
-    sub2;
-    user;
-    workoutSettings = {
-        exerciseList: [null],
-        timeout: null};
+    workoutSettings;
     audio = new Audio();
     rep = '';
     reps = '';
@@ -35,29 +24,20 @@ export class WorkoutComponent implements OnInit, OnDestroy {
         exerciseList: []
     };
     currentExercise = 0;
-    constructor(public dialog: MatDialog, private smAuth: AngularFireAuth, private db: AngularFireDatabase) {
-            this.sub = this.smAuth.user.subscribe(val => {
-                this.user = val.uid;
-                this.sub2 = this.db.object(val.uid).valueChanges().subscribe((val2: any) => {
-                    this.workoutSettings = val2.settings;
-                    this.timeOut = val2.settings.timeout;
-                });
-            });
-    }
+    constructor(public dialog: MatDialog, private db: AngularFireDatabase, public fireData: DataService) {}
 
     ngOnInit() {
         this.audio.src = 'assets/sounds/signal.mp3';
         this.audio.load();
-    }
-    ngOnDestroy() {
-        this.sub.unsubscribe();
-        this.sub2.unsubscribe();
+        this.workoutSettings = this.fireData.getSettings();
+        this.timeOut = this.workoutSettings.timeout;
     }
      addRep() {
         if (this.el.nativeElement.validity.valid) {
             this.timer = setInterval(this.update.bind(this), 1000);
             this.reps = this.reps + this.rep + '/';
-            this.workOut.exerciseList[this.currentExercise] = {name: this.workoutSettings.exerciseList[this.currentExercise],reps: this.reps};
+            //this.workOut.exerciseList[this.currentExercise] = {name: this.workoutSettings.exerciseList[this.currentExercise], reps: this.reps};
+            this.workOut.exerciseList.push({name: this.workoutSettings.exerciseList[this.currentExercise], reps: this.reps});
             this.rep = '';
             this.isDisabled = true;
         }
@@ -88,6 +68,12 @@ export class WorkoutComponent implements OnInit, OnDestroy {
         }
     }
     finishWorkout() {
-        this.db.list(this.user + '/lastworkouts').push(this.workOut).then(() => alert('Workout saved!'));
+        this.db.list(this.fireData.userUID + '/lastworkouts').push(this.workOut).then(() => alert('Workout saved!'));
+        this.workOut = {
+            date: +new Date(),
+            exerciseList: []
+        };
+        this.currentExercise = 0;
+        this.reps = '';
     }
 }

@@ -5,6 +5,7 @@ import {
     OnDestroy
 } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { DataService } from '../services/data.service';
 
 @Component({
     selector: 'sm-lastworkouts',
@@ -12,16 +13,11 @@ import { AngularFireAuth } from 'angularfire2/auth';
     styleUrls: ['./lastworkouts.component.scss']
 })
 export class LastworkoutsComponent implements OnInit, OnDestroy {
-    sub;
     workOuts;
-    constructor (private db: AngularFireDatabase, private smAuth: AngularFireAuth) {
-        this.sub = smAuth.user.subscribe(val => {
-            if (val) {
-                this.workOuts = db.list(val.uid + '/lastworkouts').valueChanges();
-            }
-        });
+    constructor (public fireData: DataService) {
     }
-
-    ngOnInit() {}
-    ngOnDestroy() { this.sub.unsubscribe(); }
+    ngOnInit() {
+        this.workOuts = this.fireData.getRecords();
+    }
+    ngOnDestroy() {}
 }

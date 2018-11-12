@@ -13,11 +13,12 @@ import { SettingsComponent } from './settings/settings.component';
 import { LastworkoutsComponent } from './lastworkouts/lastworkouts.component';
 import { WorkoutComponent } from './workout/workout.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatProgressSpinnerModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { DataService } from './services/data.service';
 
 @NgModule({
   declarations: [
@@ -38,12 +39,13 @@ import { AngularFireAuth } from 'angularfire2/auth';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    MatProgressSpinnerModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule
   ],
   entryComponents: [TimerComponent],
-  providers: [AngularFireAuth, AuthguardService],
+  providers: [AngularFireAuth, AuthguardService, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

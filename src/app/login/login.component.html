@@ -7,7 +7,7 @@
         <h3 *ngIf="loggedIn">{{ (this.smAuth.user | async)?.displayName }}</h3>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-raised-button (click)="logIn()" *ngIf="!loggedIn">Log in with <img src="assets/img/google.png"></button>
-        <button mat-raised-button (click)="goNext()" *ngIf="loggedIn">Start workout!</button>
+        <button mat-raised-button (click)="this.fireData.logIn()" *ngIf=!loggedIn>Log in with <img src="assets/img/google.png"></button>
+        <button mat-raised-button (click)="goNext()" *ngIf=loggedIn>Start workout!</button>
     </mat-card-actions>
 </mat-card>
