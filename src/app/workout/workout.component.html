@@ -15,6 +15,6 @@
     </mat-card-content>
     <mat-card-actions>
         <button mat-raised-button color="primary" (click)="nextExercise($event)">Next exercise</button>
-        <button mat-raised-button (click)="finishWorkout()" [disabled]="!workOut.exerciseList[0]">Finish workout</button>
+        <button mat-raised-button (click)="finishWorkout()" [disabled]="!workOut.exerciseList.length">Finish workout</button>
     </mat-card-actions>
 </mat-card>
