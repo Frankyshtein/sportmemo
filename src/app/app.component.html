@@ -1,1 +1,4 @@
-<sm-main></sm-main>
+<sm-main *ngIf='init'></sm-main>
+<div class="cnt" *ngIf=!this.ready>
+        <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>

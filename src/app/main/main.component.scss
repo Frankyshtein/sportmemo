@@ -39,6 +39,7 @@ mat-sidenav-content mat-toolbar {
     right: 0;
     font-family: 'Righteous';
     font-size: 30px;
+    user-select: none;
     span {
         font-family: 'Satisfy';
         color: $yellow;

@@ -1,4 +1,4 @@
-<mat-card *ngFor="let workout of (workOuts | async)">
+<mat-card *ngFor="let workout of workOuts">
     <mat-card-title>
         <p>{{ workout.date | date:'d/MM/y, HH:mm' }}</p>
     </mat-card-title>
@@ -8,3 +8,4 @@
         </mat-list>
     </mat-card-content>
 </mat-card>
+<h1 *ngIf=!workOuts[1]>No records...</h1>
