@@ -3,11 +3,17 @@
         <mat-toolbar routerLink=''>
             <p class="logo">Sport<span>Memo</span></p>
         </mat-toolbar>
-        <mat-nav-list>
+        <mat-nav-list *ngIf="!(isHandset$ | async)">
             <a mat-list-item routerLink='startworkout' routerLinkActive="active"><mat-icon>fitness_center</mat-icon>Start workout</a>
             <a mat-list-item routerLink='lastworkouts' routerLinkActive="active"><mat-icon>list</mat-icon>Last workouts</a>
             <a mat-list-item routerLink='settings' routerLinkActive="active"><mat-icon>settings</mat-icon>Settings</a>
-            <a mat-list-item (click)="this.fireData.logOut()"><mat-icon>meeting_room</mat-icon>Log out</a>
+            <a mat-list-item (click)="this.fireData.loggedIn?this.fireData.logOut():null;"><mat-icon>meeting_room</mat-icon>Log out</a>
+        </mat-nav-list>
+        <mat-nav-list *ngIf="isHandset$ | async">
+            <a mat-list-item routerLink='startworkout' routerLinkActive="active" (click)="drawer.toggle()"><mat-icon>fitness_center</mat-icon>Start workout</a>
+            <a mat-list-item routerLink='lastworkouts' routerLinkActive="active" (click)="drawer.toggle()"><mat-icon>list</mat-icon>Last workouts</a>
+            <a mat-list-item routerLink='settings' routerLinkActive="active" (click)="drawer.toggle()"><mat-icon>settings</mat-icon>Settings</a>
+            <a mat-list-item (click)="this.fireData.loggedIn?this.fireData.logOut():null;drawer.toggle()"><mat-icon>meeting_room</mat-icon>Log out</a>
         </mat-nav-list>
         <p><mat-icon>account_circle</mat-icon>{{ ( this.smAuth.user | async)?.displayName }}</p>
     </mat-sidenav>

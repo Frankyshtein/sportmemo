@@ -7,7 +7,7 @@ export class AuthguardService implements CanActivate {
     constructor(private fireData: DataService) {
     }
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        if (route.routeConfig.path === 'startworkout' && !this.fireData.getSettings()) {
+        if (route.routeConfig.path === 'startworkout' && !this.fireData.getSettings() && this.fireData.loggedIn) {
             alert('Add some exercises first!');
             return false;
         }

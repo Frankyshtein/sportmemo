@@ -45,7 +45,10 @@ export class DataService {
 
     logIn() {
         this.onReady.emit(false);
-        this.smAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
+        this.smAuth.auth.signInWithPopup(new auth.GoogleAuthProvider()).then(null, val2 => {
+            alert('Oops, something went wrong. So try again! =)');
+            this.onReady.emit(true);
+        });
     }
 
     isLogged() { return this.loggedIn; }
