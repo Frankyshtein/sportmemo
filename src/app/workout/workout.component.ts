@@ -19,25 +19,37 @@ export class WorkoutComponent implements OnInit {
     timeOut;
     timer;
     isDisabled = false;
+    savable = false;
     workOut = {
         date: +new Date(),
         exerciseList: []
     };
     currentExercise = 0;
-    constructor(public dialog: MatDialog, private db: AngularFireDatabase, public fireData: DataService) {}
+    constructor(
+        public dialog: MatDialog,
+        private db: AngularFireDatabase,
+        public fireData: DataService
+    ) {}
 
     ngOnInit() {
         this.audio.src = 'assets/sounds/signal.mp3';
         this.audio.load();
         this.workoutSettings = this.fireData.getSettings();
+        this.workoutSettings.exerciseList.map(ex => {
+            this.workOut.exerciseList.push({
+                name: ex,
+                reps: ''
+            });
+        });
+        console.log(this.workOut.exerciseList);
         this.timeOut = this.workoutSettings.timeout;
     }
-     addRep() {
+    addRep() {
+        this.savable = true;
         if (this.el.nativeElement.validity.valid) {
             this.timer = setInterval(this.update.bind(this), 1000);
             this.reps = this.reps + this.rep + '/';
-            //this.workOut.exerciseList[this.currentExercise] = {name: this.workoutSettings.exerciseList[this.currentExercise], reps: this.reps};
-            this.workOut.exerciseList.push({name: this.workoutSettings.exerciseList[this.currentExercise], reps: this.reps});
+            this.workOut.exerciseList[this.currentExercise].reps += this.reps;
             this.rep = '';
             this.isDisabled = true;
         }
@@ -59,21 +71,35 @@ export class WorkoutComponent implements OnInit {
         }
     }
     nextExercise($event) {
-        if (this.currentExercise < this.workoutSettings.exerciseList.length - 1) {
+        if (
+            this.currentExercise <
+            this.workoutSettings.exerciseList.length - 1
+        ) {
             this.currentExercise += 1;
             this.reps = '';
-            if (this.currentExercise === this.workoutSettings.exerciseList.length - 1) {
+
+            if (
+                this.currentExercise ===
+                this.workoutSettings.exerciseList.length - 1
+            ) {
                 $event.currentTarget.disabled = true;
             }
         }
     }
     finishWorkout() {
-        this.db.list(this.fireData.userUID + '/lastworkouts').push(this.workOut).then(() => alert('Workout saved!'));
+        this.workOut.exerciseList = this.workOut.exerciseList.filter(ex => {
+            return ex.reps;
+        });
+        this.db
+            .list(this.fireData.userUID + '/lastworkouts')
+            .push(this.workOut)
+            .then(() => alert('Workout saved!'));
         this.workOut = {
             date: +new Date(),
             exerciseList: []
         };
         this.currentExercise = 0;
         this.reps = '';
+        this.savable = false;
     }
 }

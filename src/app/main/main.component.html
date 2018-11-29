@@ -1,6 +1,6 @@
 <mat-sidenav-container class="sidenav-container">
     <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async)">
-        <mat-toolbar routerLink=''>
+        <mat-toolbar>
             <p class="logo">Sport<span>Memo</span></p>
         </mat-toolbar>
         <mat-nav-list *ngIf="!(isHandset$ | async)">

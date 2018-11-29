@@ -10,11 +10,13 @@
                 <input #repit type="tel" matInput placeholder="repetitions" [(ngModel)]="rep" [ngModelOptions]="{standalone: true}" pattern="^[ 0-9]+$" required>
                 <mat-icon matSuffix>mode_edit</mat-icon>
             </mat-form-field>
-            <button mat-icon-button (click)="addRep()" [disabled]="isDisabled"><mat-icon>add</mat-icon></button>
+            <button mat-icon-button (click)="addRep()" [disabled]="isDisabled">
+                <mat-icon>add</mat-icon>
+            </button>
         </form>
     </mat-card-content>
     <mat-card-actions>
         <button mat-raised-button color="primary" (click)="nextExercise($event)">Next exercise</button>
-        <button mat-raised-button (click)="finishWorkout()" [disabled]="!workOut.exerciseList.length">Finish workout</button>
+        <button mat-raised-button (click)="finishWorkout()" [disabled]=!savable>Finish workout</button>
     </mat-card-actions>
 </mat-card>
